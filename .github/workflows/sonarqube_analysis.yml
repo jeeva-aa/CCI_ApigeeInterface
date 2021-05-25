@@ -16,12 +16,12 @@ jobs:
               with:
                 repository: AAInternal/sonarscan
                 ref: v1.3.0
-                token: "${{ secrets.AAINTERNAL_READONLY_PAT }}"
+                token: "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"
                 path: ./.github/actions/sonarscan
             - name: sonarscan
               id: sonarscan
               env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow
+                GITHUB_TOKEN: "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" # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow
                 #DEPLOYMENT_ID: "put your deployment id here, default is deployment_${reponame}"
               uses: ./.github/actions/sonarscan
               with:
