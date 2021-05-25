@@ -1,0 +1,32 @@
+name: SonarQube Analysis 
+
+on:
+    push:
+      branches: [ main ]
+    pull_request:
+      branches:
+         - main
+jobs:
+    ci:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Checkout Sonar Action
+              uses: actions/checkout@v2
+              with:
+                repository: AAInternal/sonarscan
+                ref: v1.3.0
+                token: "${{ secrets.AAINTERNAL_READONLY_PAT }}"
+                path: ./.github/actions/sonarscan
+            - name: sonarscan
+              id: sonarscan
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub automatically creates a GITHUB_TOKEN secret to use in your workflow
+                #DEPLOYMENT_ID: "put your deployment id here, default is deployment_${reponame}"
+              uses: ./.github/actions/sonarscan
+              with:
+                projectKey: com.aa.crewcheckin.apigee:CCI_ApigeeInterface
+                projectName: com.aa.crewcheckin.apigee:CCI_ApigeeInterface
+                sonarqube_token: "bd97ec25edc5710330132efb9d28ff50ac86dc6e"
+                host: https://sonarqube.aa.com
+                sources: src
