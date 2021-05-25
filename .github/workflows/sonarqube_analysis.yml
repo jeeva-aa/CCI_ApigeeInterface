@@ -15,7 +15,7 @@ jobs:
               uses: actions/checkout@v2
               with:
                 repository: jeeva-aa/CCI_ApigeeInterface
-                ref: v1.3.0
+                ref: main
                 token: "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"
                 path: ./.github/actions/sonarscan
             - name: sonarscan
